@@ -1,4 +1,4 @@
-# TODO: Modify this file to create a shell script that is able to use awk to go through a file
+     # TODO: Modify this file to create a shell script that is able to use awk to go through a file
 # formatted like pokemon.dat and provides a printed report in the following format (where your 
 # script correctly calculates the values that go into the [VALUE] placeholders):
 # ======= SUMMARY OF POKEMON.DAT ======
@@ -15,3 +15,36 @@
 # The data file will be passed in to the script as a positional parameter and will not
 # necessarily be called pokemon.dat. However, you can assume that any file passed to this
 # script will be formatted exactly the way pokemon.dat is formatted.
+if [ $1 ]
+then
+awk '
+BEGIN{FS='\t'}
+{
+if (NR!=1){
+
+if ($4 =="False")
+{
+
+
+HPsum+=$6
+DefenseRow+=$8
+NumOfNonlegend+=1
+
+
+}
+}
+}
+END{
+
+print "Total Non-Legendary Pokemon: " 
+print NumOfNonlegend
+print "\nAvg. HP:  "
+print HPsum / NumOfNonlegend
+print "\nAvg. Defense: "
+print DefenseRow / NumOfNonlegend
+}
+
+' $1
+fi
+
+
